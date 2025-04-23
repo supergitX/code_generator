@@ -1,13 +1,13 @@
-# .github/workflows/code_generation.yml
 name: Code Generation Agent
 
 permissions:
-  contents: write  # Allow the workflow to push commits
+  contents: write
 
 on:
+  push:
+    paths:
+      - declaration.yaml  # or declaration.md
   workflow_dispatch:
-  issues:
-    types: [opened, edited, reopened]
   pull_request:
     types: [opened, edited, reopened]
   issue_comment:
@@ -18,7 +18,6 @@ on:
 jobs:
   generate-code:
     runs-on: ubuntu-latest
-    if: always()
 
     steps:
       - name: Checkout code
@@ -48,5 +47,5 @@ jobs:
       - name: Commit generated code
         run: |
           git add generated_code/
-          git commit -m "🤖 Generated code via Code Generation Agent" || echo "No changes to commit"
+          git commit -m "🤖 Code generated from declaration"
           git push || echo "Nothing to push"
