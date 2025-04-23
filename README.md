@@ -10,13 +10,7 @@ This project uses AI agents deployed via GitHub Actions to assist with **code ge
   - Generates or modifies code based on prompts (extracted from issues/PRs).
   - Uses the **Gemini API** for code generation.
   - Commits the generated code to a new branch or creates a PR.
-
-### Agent 2: Code Review Agent
-- **Trigger:** Any code change (push/PR), Pre-Merge Hook via GitHub Checks API, Pull Request Opened/Updated.
-- **Responsibilities:**
-  - Runs linting, best-practice checks, and suggests fixes.
-  - Provides detailed feedback via logs.
-  - Flags and stores problematic code for review.
+  - Generates using declaration.
 
 ---
 
@@ -25,8 +19,6 @@ This project uses AI agents deployed via GitHub Actions to assist with **code ge
 - `.github/workflows/` - GitHub Actions workflows for the agents.
 - `agents/` - Python scripts for each agent (code generation and review).
 - `generated_code/` - Folder for AI-generated code.
-- `review_reports/` - Folder for review logs.
-- `flagged_code/` - Folder for flagged code with issues.
 
 ---
 
@@ -35,8 +27,8 @@ This project uses AI agents deployed via GitHub Actions to assist with **code ge
 1. **Clone the repo:**
 
     ```bash
-    git clone https://github.com/yourusername/multi-agent-gemini-ci-cd.git
-    cd multi-agent-gemini-ci-cd
+    git clone https://github.com/supergitX/code_generator.git
+    cd code_generator
     ```
 
 2. **Install dependencies:**
@@ -50,7 +42,7 @@ This project uses AI agents deployed via GitHub Actions to assist with **code ge
     - This key will be used for code generation via Gemini API.
 
 4. **Configure GitHub Actions:**
-    - The workflows (`code_generation.yml`, `code_review.yml`) are pre-configured. You can trigger them manually or based on specific events.
+    - The workflows (`code_generation.yml`) are pre-configured. You can trigger them manually or based on specific events.
 
 ---
 
@@ -59,10 +51,6 @@ This project uses AI agents deployed via GitHub Actions to assist with **code ge
 - **Code Generation Agent:** 
   - Trigger the agent via a `/generate-code` comment on issues/PRs, GitHub Issue Label, or scheduled runs.
   - The generated code will be saved in the `generated_code/` folder.
-
-- **Code Review Agent:**
-  - The agent automatically triggers on any code change (push/PR) and runs lint checks.
-  - Review logs will be saved in `review_reports/`, and flagged code will be saved in `flagged_code/`.
 
 ---
 
