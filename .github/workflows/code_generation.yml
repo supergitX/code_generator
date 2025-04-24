@@ -12,9 +12,7 @@ on:
     types: [opened, edited, reopened]
   issue_comment:
     types: [created]
-  schedule:
-    - cron: '0 * * * *'  # every hour
-
+    
 jobs:
   generate-code:
     runs-on: ubuntu-latest
